@@ -1,14 +1,13 @@
-import 'package:employee_attendance_system/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -16,11 +15,15 @@ class _LoginScreenState extends State<LoginScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenWHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 255, 82, 82),
+        elevation: 0,
+      ),
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Container(
-            height: screenWHeight / 3,
+            height: screenWHeight / 4,
             width: screenWidth,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 255, 82, 82),
@@ -83,27 +86,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: () {},
                     child: Text(
-                      "LOGIN",
+                      "REGISTER",
                       style: TextStyle(fontSize: 20),
                     ),
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 255, 82, 82),
+                        primary: Colors.red,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         )),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterScreen()));
-                    },
-                    child: const Text("Are You a New Employee ? Register Here"))
               ],
             ),
           ),

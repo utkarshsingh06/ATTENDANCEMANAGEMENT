@@ -1,5 +1,7 @@
 import 'package:employee_attendance_system/screens/registerscreen.dart';
+import 'package:employee_attendance_system/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -77,21 +79,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                SizedBox(
-                  height: 60,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "LOGIN",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 255, 82, 82),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
-                  ),
+                Consumer<AuthService>(
+                  builder: (context, authServiceProvider, child) {
+                    return SizedBox(
+                      height: 60,
+                      width: double.infinity,
+                      child: authServiceProvider.isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ElevatedButton(
+                              onPressed: () {
+                                authServiceProvider.loginEmployee(
+                                    _emailController.text.trim(),
+                                    _passwordController.text.trim(),
+                                    context);
+                              },
+                              child: Text(
+                                "LOGIN",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Color.fromARGB(255, 255, 82, 82),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  )),
+                            ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 20,

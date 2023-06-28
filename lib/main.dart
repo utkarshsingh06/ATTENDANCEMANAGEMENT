@@ -1,5 +1,8 @@
+import 'package:employee_attendance_system/screens/homescreen.dart';
 import 'package:employee_attendance_system/screens/loginscreen.dart';
+import 'package:employee_attendance_system/screens/splash_screen.dart';
 import 'package:employee_attendance_system/services/auth_service.dart';
+import 'package:employee_attendance_system/services/db_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => DBService()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const LoginScreen()),
+          home: const SpalashScreen()),
     );
   }
 }

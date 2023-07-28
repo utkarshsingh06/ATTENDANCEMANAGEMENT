@@ -1,10 +1,13 @@
 import 'package:employee_attendance_system/constants/constants.dart';
+import 'package:employee_attendance_system/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'dart:math';
 
 class DBService extends ChangeNotifier {
   final SupabaseClient _supabase = Supabase.instance.client;
+  UserModel? userModel;
 
   String generateRandomEmployeeId() {
     final random = Random();
@@ -26,5 +29,16 @@ class DBService extends ChangeNotifier {
           generateRandomEmployeeId(), //create a function to generate a random id
       'department': null
     });
+  }
+
+  Future<UserModel> getUserData() async {
+    final userData = await _supabase
+        .from(Constants.employeeTable)
+        .select()
+        .eq('id', _supabase.auth.currentUser!.id)
+        .single();
+    userModel = UserModel.fromJson(
+        userData); //getting data from database in json and store into variable usermodel
+    return userModel!;
   }
 }

@@ -16,10 +16,10 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> data) {
     return UserModel(
       id: data['id'],
-      email: data['enail'],
+      email: data['email'],
       name: data['name'],
       department: data['department'],
-      employeeId: data['employeeId'],
+      employeeId: data['employee_id'],
     );
   }
 }

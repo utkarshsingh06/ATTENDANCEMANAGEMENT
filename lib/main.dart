@@ -1,5 +1,3 @@
-import 'package:employee_attendance_system/screens/homescreen.dart';
-import 'package:employee_attendance_system/screens/loginscreen.dart';
 import 'package:employee_attendance_system/screens/splash_screen.dart';
 import 'package:employee_attendance_system/services/attendace_service.dart';
 import 'package:employee_attendance_system/services/auth_service.dart';
